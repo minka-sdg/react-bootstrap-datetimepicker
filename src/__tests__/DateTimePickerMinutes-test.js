@@ -12,8 +12,8 @@ describe("DateTimePickerMinutes", function() {
   describe("Controls", function() {
 
     beforeEach(() => {
-      setSelectedMinuteMock = jest.genMockFunction();
-      onSwitchMock = jest.genMockFunction();
+      setSelectedMinuteMock = jest.fn();
+      onSwitchMock = jest.fn();
       minutes = TestUtils.renderIntoDocument(
         <DateTimePickerMinutes
           mode={Constants.MODE_TIME}
@@ -38,8 +38,8 @@ describe("DateTimePickerMinutes", function() {
 
   describe("UI", function() {
     beforeEach(() => {
-      setSelectedMinuteMock = jest.genMockFunction();
-      onSwitchMock = jest.genMockFunction();
+      setSelectedMinuteMock = jest.fn();
+      onSwitchMock = jest.fn();
     });
 
     it("renders the switch if mode is time", function() {

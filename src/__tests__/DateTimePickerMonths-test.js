@@ -10,10 +10,10 @@ describe("DateTimePickerMonths", function() {
   let subtractYearMock, addYearMock, setViewMonthMock, showYearsMock, months;
 
   beforeEach(() => {
-    subtractYearMock = jest.genMockFunction();
-    addYearMock = jest.genMockFunction();
-    showYearsMock = jest.genMockFunction();
-    setViewMonthMock = jest.genMockFunction();
+    subtractYearMock = jest.fn();
+    addYearMock = jest.fn();
+    showYearsMock = jest.fn();
+    setViewMonthMock = jest.fn();
     months = TestUtils.renderIntoDocument(
       <DateTimePickerMonths
         addYear={addYearMock}
