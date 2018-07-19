@@ -345,8 +345,7 @@ export default class DateTimeField extends Component {
       return <span />;
     }
   }
-
-  // const refs = this.refs;
+  
   render() {
     return (
           <div>

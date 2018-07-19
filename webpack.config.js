@@ -31,12 +31,12 @@ module.exports = {
     extensions: ["", ".js"]
   },
 
-  externals: {
-    "react": "React",
-    "react/addons": "React",
-    "react-bootstrap": "ReactBootstrap",
-    "moment": "moment"
-  },
+  // externals: {
+  //   "react": "React",
+  //   "react/addons": "React",
+  //   "react-bootstrap": "ReactBootstrap",
+  //   "moment": "moment"
+  // },
 
   module: {
     loaders: [
