@@ -1,4 +1,8 @@
 {
-  "optional": ["runtime"],
-  "stage": 0
+  "presets": [
+    "env",
+    "stage-0",
+    "react"
+  ],
+  "plugins": ["transform-class-properties"]
 }

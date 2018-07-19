@@ -69,6 +69,13 @@ export default class DateTimeField extends Component {
       inputValue: typeof this.props.defaultText !== "undefined" ? this.props.defaultText : moment(this.props.dateTime, this.props.format, true).format(this.resolvePropsInputFormat())
   }
 
+  constructor(props) {
+    super(props);
+    this.widget = React.createRef();
+    this.datetimepicker = React.createRef();
+    this.dtpbutton = React.createRef();
+  }
+
   componentWillReceiveProps = (nextProps) => {
     let state = {};
     if (nextProps.inputFormat !== this.props.inputFormat) {
@@ -265,7 +272,7 @@ export default class DateTimeField extends Component {
       this.setState({
         showPicker: true
       });
-      gBCR = this.refs.dtpbutton.getBoundingClientRect();
+      gBCR = this.dtpbutton.current.getBoundingClientRect();
       classes = {
         "bootstrap-datetimepicker-widget": true,
         "dropdown-menu": true
@@ -274,11 +281,11 @@ export default class DateTimeField extends Component {
         top: gBCR.top + window.pageYOffset - document.documentElement.clientTop,
         left: gBCR.left + window.pageXOffset - document.documentElement.clientLeft
       };
-      offset.top = offset.top + this.refs.datetimepicker.offsetHeight;
+      offset.top = offset.top + this.datetimepicker.current.offsetHeight;
       scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-      placePosition = this.props.direction === "up" ? "top" : this.props.direction === "bottom" ? "bottom" : this.props.direction === "auto" ? offset.top + this.refs.widget.offsetHeight > window.offsetHeight + scrollTop && this.refs.widget.offsetHeight + this.refs.datetimepicker.offsetHeight > offset.top ? "top" : "bottom" : void 0;
+      placePosition = this.props.direction === "up" ? "top" : this.props.direction === "bottom" ? "bottom" : this.props.direction === "auto" ? offset.top + this.widget.current.offsetHeight > window.offsetHeight + scrollTop && this.widget.current.offsetHeight + this.datetimepicker.current.offsetHeight > offset.top ? "top" : "bottom" : void 0;
       if (placePosition === "top") {
-        offset.top = -this.refs.widget.offsetHeight - this.clientHeight - 2;
+        offset.top = -this.widget.current.offsetHeight - this.clientHeight - 2;
         classes.top = true;
         classes.bottom = false;
         classes["pull-right"] = true;
@@ -339,6 +346,7 @@ export default class DateTimeField extends Component {
     }
   }
 
+  // const refs = this.refs;
   render() {
     return (
           <div>
@@ -353,7 +361,7 @@ export default class DateTimeField extends Component {
                   maxDate={this.props.maxDate}
                   minDate={this.props.minDate}
                   mode={this.props.mode}
-                  ref="widget"
+                  ref={ this.widget }
                   selectedDate={this.state.selectedDate}
                   setSelectedDate={this.setSelectedDate}
                   setSelectedHour={this.setSelectedHour}
@@ -375,9 +383,9 @@ export default class DateTimeField extends Component {
                   widgetClasses={this.state.widgetClasses}
                   widgetStyle={this.state.widgetStyle}
             />
-            <div className={"input-group date " + this.size()} ref="datetimepicker">
+            <div className={"input-group date " + this.size()} ref={this.datetimepicker}>
               <input className="form-control" onChange={this.onChange} type="text" value={this.state.inputValue} {...this.props.inputProps}/>
-              <span className="input-group-addon" onBlur={this.onBlur} onClick={this.onClick} ref="dtpbutton">
+              <span className="input-group-addon" onBlur={this.onBlur} onClick={this.onClick} ref={this.dtpbutton}>
                 <span className={classnames("glyphicon", this.state.buttonIcon)} />
               </span>
             </div>
