@@ -70,6 +70,9 @@ export default class DateTimePickerDays extends Component {
   }
 
   render() {
+    // there were a number of open PRs addressing the fact that days of the week were hardcoded and couldn't be localized
+    // using the solution in this one: https://github.com/quri/react-bootstrap-datetimepicker/pull/177
+    var startOfWeek = moment().startOf('week');
     return (
     <div className="datepicker-days" style={{display: "block"}}>
         <table className="table-condensed">
@@ -83,19 +86,19 @@ export default class DateTimePickerDays extends Component {
             </tr>
 
             <tr>
-              <th className="dow">Su</th>
+              <th className="dow">{startOfWeek.format('dd')}</th>
 
-              <th className="dow">Mo</th>
+              <th className="dow">{startOfWeek.add(1, 'days').format('dd')}</th>
 
-              <th className="dow">Tu</th>
+              <th className="dow">{startOfWeek.add(1, 'days').format('dd')}</th>
 
-              <th className="dow">We</th>
+              <th className="dow">{startOfWeek.add(1, 'days').format('dd')}</th>
 
-              <th className="dow">Th</th>
+              <th className="dow">{startOfWeek.add(1, 'days').format('dd')}</th>
 
-              <th className="dow">Fr</th>
+              <th className="dow">{startOfWeek.add(1, 'days').format('dd')}</th>
 
-              <th className="dow">Sa</th>
+              <th className="dow">{startOfWeek.add(1, 'days').format('dd')}</th>
             </tr>
           </thead>
 
